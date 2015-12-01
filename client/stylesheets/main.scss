@@ -1,0 +1,116 @@
+// mixins
+@mixin transform($deg) {
+  -ms-transform: rotate($deg); /* IE 9 */
+  -webkit-transform: rotate($deg); /* Chrome, Safari, Opera */
+  transform: rotate($deg);
+}
+// css variables
+$line-color: #942942;
+
+body {
+  padding-top: 25px;
+  width: 500px;
+  height: 100%;
+  margin: 0 auto;
+  font-family: sans-serif;
+  color: #333;
+  font-weight: 100;
+}
+
+.tile {
+  position: relative;
+  width: 50px;
+  height: 50px;
+
+  // Individual Tile Design
+  &:before, &:after, & x:before, & x:after {
+    content: ' ';
+    position: absolute;
+  }
+  &.bar:after  {
+    top: calc( 50% - 5px );
+    display: block;
+    width: calc( 100% - 10px );
+    border: 5px solid $line-color;
+  }
+
+  &.turn:after {
+    width: calc( 50% - 5px );
+    height: calc( 50% - 5px );
+    top: calc( 50% - 5px );
+    border-radius: 0 75% 0 0;
+    border-top: 10px solid $line-color;
+    border-right: 10px solid $line-color;
+  }
+
+  &.three:after, &.three:before {
+    width: calc( 50% - 5px );
+    height: calc( 50% - 5px );
+    top: calc( 50% - 5px );
+    border-radius: 0 75% 0 0;
+    border-top: 10px solid $line-color;
+    border-right: 10px solid $line-color;
+  }
+  &.three:before {
+    transform: translateY(-67%) rotate(90deg);
+  }
+
+  &.four:after, &.four:before, &.four x:before, &.four x:after {
+    width: calc( 50% - 5px);
+    height: calc( 50% - 5px);
+    top: calc( 50% - 5px);
+    border-radius: 0 75% 0 0;
+    border-top: 10px solid #942942;
+    border-right: 10px solid #942942;
+  }
+  &.four:before {
+    top: 0px;
+    left: calc( 50% - 5px );
+    transform: rotate(180deg);
+  }
+  &.four x:before {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  &.four x:after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(270deg);
+  }
+
+  &.cap:after {
+    width: calc( 50% - 15px );
+    height: calc( 50% - 15px );
+    top: calc( 50% - 15px );
+    left: calc( 50% - 15px );
+    border: 10px solid $line-color;
+    border-radius: 50%;
+  }
+  &.cap:before {
+    content: ' ';
+    position: absolute;
+    top: calc( 50% - 5px);
+    display: block;
+    width: calc( 40% - 10px);
+    border: 5px solid #942942;
+  }
+
+  // Tile Rotation
+  &.rotate90 {
+    transform: rotate(90deg);
+  }
+  &.rotate180 {
+    transform: rotate(180deg);
+  }
+  &.rotate270 {
+    transform: rotate(270deg);
+  }
+}
+
+
+@media (max-width: 510px) {
+  body {
+    width: auto;
+    padding: 0 5px;
+  }
+}
